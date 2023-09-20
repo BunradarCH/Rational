@@ -10,10 +10,13 @@ class Rational {
 
     Rational() {
         // to be completed
+        super();
     }
 
     Rational(long numerator, long denominator) throws Illegal { 
         // to be completed
+        this.numerator = numerator;
+        this.denominator = denominator;
     } 
 
     // find the reduce form 
@@ -46,6 +49,9 @@ class Rational {
      */
     public void subtract(Rational x) {
         // to be completed
+        numerator = (numerator * x.denominator) - (x.numerator * denominator);
+        denominator = (denominator * x.denominator);
+        simplestForm();
     }
 
     /***
@@ -54,6 +60,9 @@ class Rational {
      */
     public void multiply(Rational x) { 
         // to be completed
+        numerator = (numerator * x.numerator);
+        denominator = (denominator * x.denominator);
+        simplestForm();
     }
 
     /***
@@ -62,6 +71,9 @@ class Rational {
      */
     public void divide(Rational x) {
         // to be completed
+        numerator = (numerator * x.denominator);
+        denominator = (denominator * x.numerator);
+        simplestForm();
     }
 
     /***
@@ -71,7 +83,12 @@ class Rational {
      */
     public boolean equals(Object x) {
         // to be completed
-        return true; // TODO: This needs to be modified.
+        Rational currentX = (Rational) x;
+        if(currentX.numerator == this.numerator && currentX.denominator == this.denominator) {
+            return  true;
+        } else {
+            return false;
+        } // TODO: This needs to be modified.
     }
 
     /***
@@ -82,7 +99,17 @@ class Rational {
      */
     public long compareTo(Object x) {
         // to be completed
-        return -1; // TODO: this needs to be modified.
+        Rational currentX = (Rational) x;
+        this.numerator = this.numerator * currentX.denominator;
+        ((Rational) x).numerator = currentX.numerator * this.denominator;
+        if (this.numerator > currentX.numerator) {
+            return 1;
+        } else if (this.numerator < currentX.numerator) {
+            return -1;
+        } else {
+            return 0;
+        }
+         // TODO: this needs to be modified.
     }
 
     /***
@@ -91,7 +118,8 @@ class Rational {
      */
     public String toString() { 
         // to be completed
-        return ""; // TODO: This needs to be modified.
+        return this.numerator + "/" + this.denominator;
+        // TODO: This needs to be modified.
     }
 
     public static void main(String[] args) {
